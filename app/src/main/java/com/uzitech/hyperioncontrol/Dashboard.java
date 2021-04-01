@@ -199,6 +199,7 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                     public void onError(ANError error) {
                         if (error.getErrorCode() == 0) {
                             Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                            getServerInfo();
                         }
                     }
                 });
