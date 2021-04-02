@@ -155,6 +155,15 @@
             android:drawableTop="@drawable/outline_settings_white_48"
             android:text="@string/configuration"
             tools:ignore="ButtonStyle" />
+
+        <TextView
+            android:id="@+id/no_connection"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_red_light"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_connection" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

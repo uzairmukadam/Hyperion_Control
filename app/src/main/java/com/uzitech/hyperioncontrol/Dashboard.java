@@ -42,6 +42,8 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
     RecyclerView priority_list;
     TextView no_source_msg;
 
+    TextView no_connection;
+
     JSONArray priorities, effects;
     PriorityListAdapter priorityListAdapter;
 
@@ -53,7 +55,7 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
         setContentView(R.layout.activity_dashboard);
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
-                .connectTimeout(500, TimeUnit.MILLISECONDS)
+                .connectTimeout(750, TimeUnit.MILLISECONDS)
                 .build();
 
         AndroidNetworking.initialize(this, okHttpClient);
@@ -81,6 +83,7 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
             set_effect = findViewById(R.id.effect_mode);
             priority_list = findViewById(R.id.priority_list);
             no_source_msg = findViewById(R.id.no_source_msg);
+            no_connection = findViewById(R.id.no_connection);
 
             brightness_control.setMax(100);
             brightness_control.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -191,6 +194,7 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        no_connection.setVisibility(View.GONE);
                         serverInfo = response;
                         processData();
                     }
@@ -198,7 +202,8 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                     @Override
                     public void onError(ANError error) {
                         if (error.getErrorCode() == 0) {
-                            Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                            no_connection.setVisibility(View.VISIBLE);
                             getServerInfo();
                         }
                     }
