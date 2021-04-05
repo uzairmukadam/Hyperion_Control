@@ -36,7 +36,7 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
 
     String url;
 
-    boolean first_run = true;
+    boolean first_run = true, connected = false;
     SeekBar brightness_control;
     Button set_color, set_effect;
     RecyclerView priority_list;
@@ -103,12 +103,22 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                 }
             });
 
-            set_color.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), SetColorActivity.class)));
+            set_color.setOnClickListener(v -> {
+                if (connected) {
+                    startActivity(new Intent(getApplicationContext(), SetColorActivity.class));
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                }
+            });
             set_effect.setOnClickListener(v -> {
-                String data = effects.toString();
-                Intent effects = new Intent(getApplicationContext(), SetEffectActivity.class);
-                effects.putExtra("list", data);
-                startActivity(effects);
+                if (connected) {
+                    String data = effects.toString();
+                    Intent effects = new Intent(getApplicationContext(), SetEffectActivity.class);
+                    effects.putExtra("list", data);
+                    startActivity(effects);
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                }
             });
 
             priorities = new JSONArray();
@@ -194,6 +204,7 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        connected = true;
                         no_connection.setVisibility(View.GONE);
                         serverInfo = response;
                         processData();
@@ -203,6 +214,7 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                     public void onError(ANError error) {
                         if (error.getErrorCode() == 0) {
                             //Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                            connected = false;
                             no_connection.setVisibility(View.VISIBLE);
                             getServerInfo();
                         }
