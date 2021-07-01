@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +38,7 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
 
     boolean first_run = true, connected = false;
     SeekBar brightness_control;
-    Button set_color, set_effect;
+    ImageButton set_color, set_effect, set_image, configuration;
     RecyclerView priority_list;
     TextView no_source_msg;
 
@@ -81,6 +81,8 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
             brightness_control = findViewById(R.id.brightness_control);
             set_color = findViewById(R.id.color_mode);
             set_effect = findViewById(R.id.effect_mode);
+            set_image = findViewById(R.id.image_mode);
+            configuration = findViewById(R.id.config_mode);
             priority_list = findViewById(R.id.priority_list);
             no_source_msg = findViewById(R.id.no_source_msg);
             no_connection = findViewById(R.id.no_connection);
@@ -90,7 +92,9 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                     if (fromUser) {
-                        changeBrightness(seekBar.getProgress());
+                        if (connected) {
+                            changeBrightness(progress);
+                        }
                     }
                 }
 
@@ -116,6 +120,24 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                     Intent effects = new Intent(getApplicationContext(), SetEffectActivity.class);
                     effects.putExtra("list", data);
                     startActivity(effects);
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                }
+            });
+            set_image.setOnClickListener(v -> {
+                if (connected) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.under_construction), Toast.LENGTH_SHORT).show();
+                    //Intent effects = new Intent(getApplicationContext(), SetEffectActivity.class);
+                    //startActivity(effects);
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+                }
+            });
+            configuration.setOnClickListener(v -> {
+                if (connected) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.under_construction), Toast.LENGTH_SHORT).show();
+                    //Intent effects = new Intent(getApplicationContext(), SetEffectActivity.class);
+                    //startActivity(effects);
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
                 }
@@ -213,7 +235,6 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
                     @Override
                     public void onError(ANError error) {
                         if (error.getErrorCode() == 0) {
-                            //Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
                             connected = false;
                             no_connection.setVisibility(View.VISIBLE);
                             getServerInfo();

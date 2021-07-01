@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Dashboard">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/brightness_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/primary_dark"
+        android:orientation="vertical">
 
-        <ImageView
-            style="@style/brightness_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/brightness_icon"
-            app:srcCompat="@drawable/baseline_brightness_high_white_48" />
-
-        <SeekBar
-            android:id="@+id/brightness_control"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <TextView
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:progress="100"
-            android:progressDrawable="@drawable/brightness_value"
-            android:splitTrack="false"
-            android:thumb="@drawable/brightness_thumb" />
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:padding="8dp"
+                style="@style/brightness_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/brightness_icon"
+                app:srcCompat="@drawable/baseline_brightness_high_white_48" />
+
+            <SeekBar
+                android:id="@+id/brightness_control"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:progress="100"
+                android:progressDrawable="@drawable/brightness_value"
+                android:splitTrack="false"
+                android:thumb="@drawable/brightness_thumb" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginVertical="16dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button_layout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/brightness_layout">
 
         <LinearLayout
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
@@ -113,57 +128,68 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/button_layout"
+        android:background="@color/primary_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/color_mode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/outline_lightbulb_white_48"
-                android:text="@string/set_color"
-                tools:ignore="ButtonStyle" />
-
-            <Button
-                android:id="@+id/effect_mode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/outline_auto_fix_high_white_48"
-                android:text="@string/set_effect"
-                tools:ignore="ButtonStyle" />
-        </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="8dp"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/outline_settings_white_48"
-            android:text="@string/configuration"
-            tools:ignore="ButtonStyle" />
-
-        <TextView
-            android:id="@+id/no_connection"
-            android:textColor="@android:color/white"
-            android:background="@android:color/holo_red_light"
-            android:textAlignment="center"
+        <ImageButton
+            android:id="@+id/color_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/no_connection" />
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_img_button"
+            android:elevation="2dp"
+            android:padding="16dp"
+            app:srcCompat="@drawable/outline_lightbulb_white_48" />
+
+        <ImageButton
+            android:id="@+id/effect_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_img_button"
+            android:elevation="2dp"
+            android:padding="16dp"
+            android:src="@drawable/outline_auto_fix_high_white_48" />
+
+        <ImageButton
+            android:id="@+id/image_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_img_button"
+            android:elevation="2dp"
+            android:padding="16dp"
+            android:src="@drawable/outline_image_white_48" />
+
+        <ImageButton
+            android:id="@+id/config_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_img_button"
+            android:elevation="2dp"
+            android:padding="16dp"
+            android:src="@drawable/outline_settings_white_48" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/no_connection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:text="@string/no_connection"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

@@ -7,7 +7,7 @@
             android:shape="rectangle"
             android:tint="@color/brightness_back">
             <corners android:radius="8dp" />
-            <size android:height="18dp" />
+            <size android:height="12dp" />
             <solid android:color="@color/brightness_back" />
         </shape>
     </item>
@@ -24,7 +24,7 @@
                         android:shape="rectangle"
                         android:tint="@color/brightness_val">
                         <corners android:radius="8dp" />
-                        <size android:height="18dp" />
+                        <size android:height="12dp" />
                         <solid android:color="@color/brightness_val" />
                     </shape>
                 </item>

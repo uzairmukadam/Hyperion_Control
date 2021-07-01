@@ -11,6 +11,7 @@
 
     <string name="no_connection">Not connected</string>
     <string name="connection_error">Cannot connect</string>
+    <string name="under_construction">Under construction</string>
 
     <string name="input_error">Please fill all fields</string>
     <string name="brightness_icon">Brightness Icon</string>
