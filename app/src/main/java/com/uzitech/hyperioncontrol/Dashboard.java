@@ -126,9 +126,8 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
             });
             set_image.setOnClickListener(v -> {
                 if (connected) {
-                    Toast.makeText(getApplicationContext(), getString(R.string.under_construction), Toast.LENGTH_SHORT).show();
-                    //Intent effects = new Intent(getApplicationContext(), SetEffectActivity.class);
-                    //startActivity(effects);
+                    Intent effects = new Intent(getApplicationContext(), SetImageActivity.class);
+                    startActivity(effects);
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
                 }

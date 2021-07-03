@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HyperionControl"
         android:usesCleartextTraffic="true">
+        <activity android:name=".SetImageActivity"></activity>
         <activity
             android:name=".SetEffectActivity"
             android:screenOrientation="portrait" />

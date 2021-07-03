@@ -12,6 +12,7 @@
     <string name="no_connection">Not connected</string>
     <string name="connection_error">Cannot connect</string>
     <string name="under_construction">Under construction</string>
+    <string name="something_wrong">Some thing went wrong. Try again!</string>
 
     <string name="input_error">Please fill all fields</string>
     <string name="brightness_icon">Brightness Icon</string>
@@ -23,4 +24,5 @@
     <string name="set_effect">Set Effect</string>
     <string name="configuration">Configuration</string>
     <string name="empty_source">No source active</string>
+    <string name="img_warning">It might take some time to apply the image. Please wait.</string>
 </resources>
