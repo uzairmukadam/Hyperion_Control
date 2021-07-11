@@ -7,7 +7,7 @@
             android:shape="rectangle"
             android:tint="@color/brightness_back">
             <corners android:radius="8dp" />
-            <size android:height="12dp" />
+            <size android:height="10dp" />
             <solid android:color="@color/brightness_back" />
         </shape>
     </item>

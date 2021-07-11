@@ -12,12 +12,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="8dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
             android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -29,11 +29,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:padding="8dp"
                 style="@style/brightness_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/brightness_icon"
+                android:padding="8dp"
                 app:srcCompat="@drawable/baseline_brightness_high_white_48" />
 
             <SeekBar
@@ -41,6 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
                 android:progress="100"
                 android:progressDrawable="@drawable/brightness_value"
@@ -61,10 +62,10 @@
         app:layout_constraintTop_toBottomOf="@+id/brightness_layout">
 
         <LinearLayout
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
             <TextView
@@ -128,9 +129,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background="@color/primary_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/primary_dark"
         android:orientation="horizontal">
 
         <ImageButton
@@ -183,13 +184,13 @@
     </LinearLayout>
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/no_connection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_red_light"
         android:text="@string/no_connection"
         android:textAlignment="center"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:visibility="gone" />
 
 </LinearLayout>

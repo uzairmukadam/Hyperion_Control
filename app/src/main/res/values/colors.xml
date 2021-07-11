@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_light">#ee4b6a</color>
-    <color name="primary_dark">#df3b57</color>
-    <color name="secondary_light">#FF018786</color>
-    <color name="secondary_dark">#0f7173</color>
+    <color name="primary_light">#49A078</color>
+    <color name="primary_dark">#216869</color>
+    <color name="secondary_light">#FED9B7</color>
+    <color name="secondary_dark">#F07167</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="brightness_val">#18206f</color>
-    <color name="brightness_back">#f5e2c8</color>
+    <color name="brightness_thumb">#FDFCDC</color>
+    <color name="brightness_val">#013A63</color>
+    <color name="brightness_back">#61A5C2</color>
 
     <color name="divider">#D3D3D3</color>
 </resources>

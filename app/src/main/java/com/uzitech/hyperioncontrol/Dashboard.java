@@ -1,9 +1,14 @@
 package com.uzitech.hyperioncontrol;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -19,12 +24,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.uzitech.hyperioncontrol.Support.PriorityListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -126,8 +133,11 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
             });
             set_image.setOnClickListener(v -> {
                 if (connected) {
-                    Intent effects = new Intent(getApplicationContext(), SetImageActivity.class);
-                    startActivity(effects);
+                    ImagePicker.with(this)
+                            .crop()
+                            .compress(1024)
+                            .maxResultSize(120, 68)
+                            .start();
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
                 }
@@ -276,6 +286,22 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
         sendRequest(object);
     }
 
+    private void setImage(String val) {
+        JSONObject responseObject = new JSONObject();
+
+        try {
+            responseObject.put("command", "image");
+            responseObject.put("imagedata", val);
+            responseObject.put("name", "Set from controller");
+            responseObject.put("format", "auto");
+            responseObject.put("priority", 50);
+            responseObject.put("origin", getString(R.string.app_name));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        sendRequest(responseObject);
+    }
+
     @Override
     public void stopSource(int priority) {
         JSONObject object = new JSONObject();
@@ -298,5 +324,26 @@ public class Dashboard extends AppCompatActivity implements PriorityListAdapter.
             e.printStackTrace();
         }
         sendRequest(object);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            assert data != null;
+            Uri uri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+                String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                setImage(encoded);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
