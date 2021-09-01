@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Hyperion Control</string>
+
+    <string name="pref_data">Hyperion_Data</string>
+
+    <string name="addr_label">IP Address:</string>
+    <string name="server_addr_hint">192.168.1.0</string>
+    <string name="port_label">Port:</string>
+    <string name="server_port_hint">8090</string>
+    <string name="connect_button">Connect</string>
+
+    <string name="disconnect_button">Disconnect</string>
+
+    <string name="no_connection">Not connected</string>
+    <string name="connection_error">Cannot connect</string>
+    <string name="under_construction">Under construction</string>
+    <string name="something_wrong">Some thing went wrong. Try again!</string>
+
+    <string name="stop">Stop</string>
+    <string name="select">Select</string>
+
+    <string name="input_error">Please fill all fields</string>
+    <string name="brightness_icon">Brightness Icon</string>
+    <string name="origin_title">Origin</string>
+    <string name="type_title">Type</string>
+    <string name="priority_title">Priority</string>
+    <string name="status_action_title">Status/Action</string>
+    <string name="set_color">Set Color</string>
+    <string name="set_effect">Set Effect</string>
+    <string name="configuration">Configuration</string>
+    <string name="empty_source">No source active</string>
+    <string name="img_warning">It might take some time to apply the image. Please wait.</string>
+</resources>
